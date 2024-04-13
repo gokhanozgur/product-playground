@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  productplayground.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:5011;http://+:5010
+    ports:
+      - "5010:5010"
+      - "5011:5011"
+    volumes:
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro

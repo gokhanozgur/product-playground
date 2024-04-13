@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  productplayground.api:
+    image: ${DOCKER_REGISTRY-}productplayground
+    container_name: productplayground.api
+    build:
+      context: .
+      dockerfile: Presentation/ProductPlayground.Api/Dockerfile
+    ports:
+      - "5010:5010"
+      - "5011:5011"
+  productplayground_postgres:
+    image: postgres
+    container_name: productplayground_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: player_one
+      POSTGRES_PASSWORD: player_one12345
+      POSTGRES_DB: product_playground
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
