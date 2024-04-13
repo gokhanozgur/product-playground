@@ -13,12 +13,12 @@ namespace ProductPlayground.Domain.Entities
 		{
 			ParentId = parentId;
 			Name = name;
-			Priorty = priorty;
+			Priority = priorty;
 		}
 
 		public int ParentId { get; set; }
 		public string Name { get; set; }
-		public int Priorty { get; set; }
+		public int Priority { get; set; }
 
 		public ICollection<Detail> Details { get; set; }
         public ICollection<Product> Products { get; set; }

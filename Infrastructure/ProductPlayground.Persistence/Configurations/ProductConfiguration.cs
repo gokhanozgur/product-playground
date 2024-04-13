@@ -28,7 +28,7 @@ namespace ProductPlayground.Persistence.Configurations
                     BrandId = new Random().Next(1, 4),
                     Price = faker.Finance.Amount(100, 2000),
                     Discount = faker.Finance.Amount(10, 50),
-                    CreaetedDate = DateTime.Now,
+                    CreatedDate = DateTime.Now,
                 };
                 products.Add(product);
             }

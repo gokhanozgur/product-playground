@@ -26,7 +26,7 @@ namespace ProductPlayground.Persistence.Configurations
                     Title = faker.Lorem.Sentence(1),
                     Description = faker.Lorem.Sentence(1),
                     CategoryId = new Random().Next(1,5),
-                    CreaetedDate = DateTime.Now,
+                    CreatedDate = DateTime.Now,
                 };
                 details.Add(detail);
             }

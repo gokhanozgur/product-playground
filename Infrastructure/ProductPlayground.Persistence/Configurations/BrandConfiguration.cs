@@ -26,7 +26,7 @@ namespace ProductPlayground.Persistence.Configurations
                 {
                     Id = i,
                     Name = faker.Commerce.Department(),
-                    CreaetedDate = DateTime.Now,
+                    CreatedDate = DateTime.Now,
                 };
                 brands.Add(brand);
             }

@@ -14,44 +14,52 @@ namespace ProductPlayground.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
+            List<Category> categories = new List<Category>();
+
             Category category1 = new Category { 
                 Id = 1,
                 Name = "Electronic",
-                Priorty = 1,
+                Priority = 1,
                 ParentId = 0,
-                CreaetedDate = DateTime.Now
+                CreatedDate = DateTime.Now
             };
+
+            categories.Add(category1);
 
             Category category2 = new Category
             {
                 Id = 2,
                 Name = "Moda",
-                Priorty = 2,
+                Priority = 2,
                 ParentId = 0,
-                CreaetedDate = DateTime.Now
+                CreatedDate = DateTime.Now
             };
+
+            categories.Add(category2);
 
             Category subCategory1 = new Category
             {
                 Id = 3,
                 Name = "Computer",
-                Priorty = 1,
+                Priority = 1,
                 ParentId = 1,
-                CreaetedDate = DateTime.Now
+                CreatedDate = DateTime.Now
             };
+
+            categories.Add(subCategory1);
 
             Category subCategory2 = new Category
             {
                 Id = 4,
                 Name = "Dress",
-                Priorty = 2,
+                Priority = 2,
                 ParentId = 2,
-                CreaetedDate = DateTime.Now
+                CreatedDate = DateTime.Now
             };
 
-            Faker faker = new("en");
+            categories.Add(subCategory2);
 
-            List<Category> categories = new List<Category>();
+            Faker faker = new("en");
 
             for (int i = 5; i <= 10; i++)
             {
@@ -59,14 +67,14 @@ namespace ProductPlayground.Persistence.Configurations
                 {
                     Id = i,
                     Name = faker.Commerce.Department(),
-                    Priorty = new Random().Next(1,11),
+                    Priority = new Random().Next(1,11),
                     ParentId = new Random().Next(1, 5),
-                    CreaetedDate = DateTime.Now,
+                    CreatedDate = DateTime.Now,
                 };
                 categories.Add(category);
             }
 
-            builder.HasData(category1, category2, subCategory1, subCategory2, categories);
+            builder.HasData(categories);
         }
     }
 }
