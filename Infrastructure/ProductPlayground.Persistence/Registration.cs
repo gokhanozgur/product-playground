@@ -19,6 +19,7 @@ namespace ProductPlayground.Persistence
             //services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString")));
             services.AddDbContext<AppDbContext>(opt => opt.UseNpgsql(configuration.GetConnectionString("DefaultConnectionString")));
             services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
+            services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
         }
     }
 }
