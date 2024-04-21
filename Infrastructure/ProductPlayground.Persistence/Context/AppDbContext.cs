@@ -13,7 +13,9 @@ namespace ProductPlayground.Persistence.Context
     {
         public AppDbContext() { }
 
-        public AppDbContext(DbContextOptions options) : base(options) { }
+        public AppDbContext(DbContextOptions options) : base(options) {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        }
 
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Detail> Details { get; set; }
