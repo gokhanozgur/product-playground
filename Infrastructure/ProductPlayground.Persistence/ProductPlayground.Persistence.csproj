@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\ProductPlayground.Application\ProductPlayground.Application.csproj" />
     <ProjectReference Include="..\..\Core\ProductPlayground.Domain\ProductPlayground.Domain.csproj" />
   </ItemGroup>
 
