@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using ProductPlayground.Application.Interfaces.AutoMapper;
 using ProductPlayground.Application.Interfaces.UnitOfWork;
 using ProductPlayground.Domain.Entities;
 using System;
@@ -12,31 +13,39 @@ namespace ProductPlayground.Application.Features.Products.Queries.GetAllProducts
     public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQueryRequest, IList<GetAllProductsQueryResponse>>
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper mapper;
 
-        public GetAllProductsQueryHandler(IUnitOfWork unitOfWork)
+        public GetAllProductsQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
 
         public async Task<IList<GetAllProductsQueryResponse>> Handle(GetAllProductsQueryRequest request, CancellationToken cancellationToken)
         {
             var products = await _unitOfWork.GetReadRepository<Product>().GetAllAsync();
 
-            List<GetAllProductsQueryResponse> response = new ();
+            //List<GetAllProductsQueryResponse> response = new ();
 
-            foreach (var product in products)
+            //foreach (var product in products)
+            //{
+            //    response.Add(new GetAllProductsQueryResponse
+            //    {
+            //        Title = product.Title,
+            //        Description = product.Description,
+            //        Discount = product.Discount,
+            //        //Price = product.Price,
+            //        Price = product.Price - (product.Price * product.Discount / 100),
+            //    });
+            //}
+
+            var map = mapper.Map<GetAllProductsQueryResponse, Product>(products);
+            foreach (var item in map)
             {
-                response.Add(new GetAllProductsQueryResponse
-                {
-                    Title = product.Title,
-                    Description = product.Description,
-                    Discount = product.Discount,
-                    //Price = product.Price,
-                    Price = product.Price - (product.Price * product.Discount / 100),
-                });
+                item.Price -= (item.Price * item.Discount / 100);
             }
 
-            return response;
+            return map;
         }
     }
 }
