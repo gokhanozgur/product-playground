@@ -20,7 +20,7 @@ namespace ProductPlayground.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
@@ -99,24 +99,24 @@ namespace ProductPlayground.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CategoryProduct",
+                name: "ProductCategories",
                 columns: table => new
                 {
-                    CategoriesId = table.Column<int>(type: "integer", nullable: false),
-                    ProductsId = table.Column<int>(type: "integer", nullable: false)
+                    ProductId = table.Column<int>(type: "integer", nullable: false),
+                    CategoryId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryProduct", x => new { x.CategoriesId, x.ProductsId });
+                    table.PrimaryKey("PK_ProductCategories", x => new { x.ProductId, x.CategoryId });
                     table.ForeignKey(
-                        name: "FK_CategoryProduct_Categories_CategoriesId",
-                        column: x => x.CategoriesId,
+                        name: "FK_ProductCategories_Categories_CategoryId",
+                        column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CategoryProduct_Products_ProductsId",
-                        column: x => x.ProductsId,
+                        name: "FK_ProductCategories_Products_ProductId",
+                        column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -127,9 +127,9 @@ namespace ProductPlayground.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 4, 21, 16, 15, 38, 727, DateTimeKind.Local).AddTicks(5288), null, "Baby", null },
-                    { 2, new DateTime(2024, 4, 21, 16, 15, 38, 727, DateTimeKind.Local).AddTicks(5317), null, "Sports & Books", null },
-                    { 3, new DateTime(2024, 4, 21, 16, 15, 38, 727, DateTimeKind.Local).AddTicks(5322), null, "Computers", null }
+                    { 1, new DateTime(2024, 4, 23, 10, 58, 8, 915, DateTimeKind.Local).AddTicks(4267), null, "Toys & Industrial", null },
+                    { 2, new DateTime(2024, 4, 23, 10, 58, 8, 915, DateTimeKind.Local).AddTicks(4280), null, "Sports & Beauty", null },
+                    { 3, new DateTime(2024, 4, 23, 10, 58, 8, 915, DateTimeKind.Local).AddTicks(4294), null, "Home, Automotive & Computers", null }
                 });
 
             migrationBuilder.InsertData(
@@ -137,16 +137,16 @@ namespace ProductPlayground.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "ParentId", "Priority", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 4, 21, 16, 15, 38, 727, DateTimeKind.Local).AddTicks(6344), null, "Electronic", 0, 1, null },
-                    { 2, new DateTime(2024, 4, 21, 16, 15, 38, 727, DateTimeKind.Local).AddTicks(6348), null, "Moda", 0, 2, null },
-                    { 3, new DateTime(2024, 4, 21, 16, 15, 38, 727, DateTimeKind.Local).AddTicks(6349), null, "Computer", 1, 1, null },
-                    { 4, new DateTime(2024, 4, 21, 16, 15, 38, 727, DateTimeKind.Local).AddTicks(6351), null, "Dress", 2, 2, null },
-                    { 5, new DateTime(2024, 4, 21, 16, 15, 38, 729, DateTimeKind.Local).AddTicks(408), null, "Beauty, Sports & Electronics", 1, 7, null },
-                    { 6, new DateTime(2024, 4, 21, 16, 15, 38, 729, DateTimeKind.Local).AddTicks(439), null, "Home & Outdoors", 3, 9, null },
-                    { 7, new DateTime(2024, 4, 21, 16, 15, 38, 729, DateTimeKind.Local).AddTicks(446), null, "Health", 3, 10, null },
-                    { 8, new DateTime(2024, 4, 21, 16, 15, 38, 729, DateTimeKind.Local).AddTicks(454), null, "Outdoors", 2, 3, null },
-                    { 9, new DateTime(2024, 4, 21, 16, 15, 38, 729, DateTimeKind.Local).AddTicks(464), null, "Kids & Tools", 4, 10, null },
-                    { 10, new DateTime(2024, 4, 21, 16, 15, 38, 729, DateTimeKind.Local).AddTicks(478), null, "Clothing & Jewelery", 2, 3, null }
+                    { 1, new DateTime(2024, 4, 23, 10, 58, 8, 915, DateTimeKind.Local).AddTicks(5925), null, "Electronic", 0, 1, null },
+                    { 2, new DateTime(2024, 4, 23, 10, 58, 8, 915, DateTimeKind.Local).AddTicks(5931), null, "Moda", 0, 2, null },
+                    { 3, new DateTime(2024, 4, 23, 10, 58, 8, 915, DateTimeKind.Local).AddTicks(5933), null, "Computer", 1, 1, null },
+                    { 4, new DateTime(2024, 4, 23, 10, 58, 8, 915, DateTimeKind.Local).AddTicks(5934), null, "Dress", 2, 2, null },
+                    { 5, new DateTime(2024, 4, 23, 10, 58, 8, 917, DateTimeKind.Local).AddTicks(125), null, "Shoes, Grocery & Computers", 1, 8, null },
+                    { 6, new DateTime(2024, 4, 23, 10, 58, 8, 917, DateTimeKind.Local).AddTicks(134), null, "Garden", 4, 7, null },
+                    { 7, new DateTime(2024, 4, 23, 10, 58, 8, 917, DateTimeKind.Local).AddTicks(171), null, "Computers", 1, 9, null },
+                    { 8, new DateTime(2024, 4, 23, 10, 58, 8, 917, DateTimeKind.Local).AddTicks(185), null, "Electronics, Books & Shoes", 2, 5, null },
+                    { 9, new DateTime(2024, 4, 23, 10, 58, 8, 917, DateTimeKind.Local).AddTicks(193), null, "Garden", 2, 6, null },
+                    { 10, new DateTime(2024, 4, 23, 10, 58, 8, 917, DateTimeKind.Local).AddTicks(199), null, "Sports", 4, 10, null }
                 });
 
             migrationBuilder.InsertData(
@@ -154,16 +154,16 @@ namespace ProductPlayground.Persistence.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedDate", "DeletedDate", "Description", "Title", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 4, new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(6982), null, "Quisquam.", "Sint.", null },
-                    { 2, 1, new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7025), null, "A.", "Quasi.", null },
-                    { 3, 4, new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7052), null, "Voluptas.", "Debitis.", null },
-                    { 4, 1, new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7068), null, "Cupiditate.", "Modi.", null },
-                    { 5, 1, new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7083), null, "Itaque.", "Rerum.", null },
-                    { 6, 1, new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7099), null, "Eaque.", "Temporibus.", null },
-                    { 7, 2, new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7118), null, "Ea.", "Vero.", null },
-                    { 8, 2, new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7134), null, "Sit.", "Blanditiis.", null },
-                    { 9, 1, new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7149), null, "Praesentium.", "Sint.", null },
-                    { 10, 4, new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7165), null, "Vel.", "Aut.", null }
+                    { 1, 1, new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6267), null, "Voluptatem.", "Commodi.", null },
+                    { 2, 4, new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6292), null, "Iusto.", "Cum.", null },
+                    { 3, 3, new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6311), null, "Sit.", "Autem.", null },
+                    { 4, 1, new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6325), null, "Nobis.", "Dignissimos.", null },
+                    { 5, 2, new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6340), null, "Aut.", "Quo.", null },
+                    { 6, 2, new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6358), null, "Magnam.", "Id.", null },
+                    { 7, 2, new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6400), null, "Nemo.", "Quam.", null },
+                    { 8, 3, new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6415), null, "Praesentium.", "Incidunt.", null },
+                    { 9, 3, new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6430), null, "Tempore.", "Itaque.", null },
+                    { 10, 1, new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6447), null, "Maiores.", "Minima.", null }
                 });
 
             migrationBuilder.InsertData(
@@ -171,26 +171,26 @@ namespace ProductPlayground.Persistence.Migrations
                 columns: new[] { "Id", "BrandId", "CreatedDate", "DeletedDate", "Description", "Discount", "Price", "Title", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 3, new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(2924), null, "Doloribus.", 25.94m, 993.35m, "Aliquid.", null },
-                    { 2, 1, new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(2947), null, "Iste.", 40.65m, 1909.87m, "In.", null },
-                    { 3, 2, new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(2965), null, "Excepturi.", 39.63m, 647.41m, "Praesentium.", null },
-                    { 4, 1, new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(3011), null, "Iste.", 45.75m, 1199.61m, "Molestiae.", null },
-                    { 5, 3, new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(3031), null, "Quis.", 19.40m, 1038.29m, "Ipsa.", null },
-                    { 6, 3, new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(3050), null, "Eum.", 30.47m, 1336.14m, "Et.", null },
-                    { 7, 2, new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(3067), null, "Maiores.", 30.82m, 800.21m, "Commodi.", null },
-                    { 8, 2, new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(3084), null, "Sit.", 13.66m, 1123.22m, "Voluptatem.", null },
-                    { 9, 3, new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(3103), null, "Pariatur.", 36.20m, 447.31m, "Rerum.", null },
-                    { 10, 1, new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(3121), null, "Consectetur.", 22.06m, 354.58m, "Quia.", null }
+                    { 1, 2, new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8575), null, "Optio.", 14.93m, 1922.19m, "Officia.", null },
+                    { 2, 2, new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8641), null, "Sint.", 39.40m, 169.88m, "Perspiciatis.", null },
+                    { 3, 3, new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8660), null, "Iure.", 12.57m, 1979.92m, "Reprehenderit.", null },
+                    { 4, 3, new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8682), null, "Est.", 15.39m, 1903.35m, "Amet.", null },
+                    { 5, 1, new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8699), null, "Dolore.", 25.83m, 1108.90m, "Quo.", null },
+                    { 6, 3, new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8717), null, "Exercitationem.", 28.56m, 533.04m, "Rerum.", null },
+                    { 7, 3, new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8733), null, "Aut.", 22.06m, 1134.56m, "Eius.", null },
+                    { 8, 1, new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8751), null, "Sint.", 26.19m, 715.87m, "Qui.", null },
+                    { 9, 3, new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8768), null, "Alias.", 16.29m, 433.50m, "Aut.", null },
+                    { 10, 1, new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8785), null, "Dignissimos.", 15.25m, 1826.42m, "Debitis.", null }
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CategoryProduct_ProductsId",
-                table: "CategoryProduct",
-                column: "ProductsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Details_CategoryId",
                 table: "Details",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductCategories_CategoryId",
+                table: "ProductCategories",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
@@ -203,16 +203,16 @@ namespace ProductPlayground.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CategoryProduct");
-
-            migrationBuilder.DropTable(
                 name: "Details");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "ProductCategories");
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Brands");

@@ -12,7 +12,7 @@ using ProductPlayground.Persistence.Context;
 namespace ProductPlayground.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240421131539_InitialMigration")]
+    [Migration("20240423075809_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -24,21 +24,6 @@ namespace ProductPlayground.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("CategoryProduct", b =>
-                {
-                    b.Property<int>("CategoriesId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ProductsId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("CategoriesId", "ProductsId");
-
-                    b.HasIndex("ProductsId");
-
-                    b.ToTable("CategoryProduct");
-                });
 
             modelBuilder.Entity("ProductPlayground.Domain.Entities.Brand", b =>
                 {
@@ -56,8 +41,8 @@ namespace ProductPlayground.Persistence.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("timestamp without time zone");
@@ -70,20 +55,20 @@ namespace ProductPlayground.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 727, DateTimeKind.Local).AddTicks(5288),
-                            Name = "Baby"
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 915, DateTimeKind.Local).AddTicks(4267),
+                            Name = "Toys & Industrial"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 727, DateTimeKind.Local).AddTicks(5317),
-                            Name = "Sports & Books"
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 915, DateTimeKind.Local).AddTicks(4280),
+                            Name = "Sports & Beauty"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 727, DateTimeKind.Local).AddTicks(5322),
-                            Name = "Computers"
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 915, DateTimeKind.Local).AddTicks(4294),
+                            Name = "Home, Automotive & Computers"
                         });
                 });
 
@@ -122,7 +107,7 @@ namespace ProductPlayground.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 727, DateTimeKind.Local).AddTicks(6344),
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 915, DateTimeKind.Local).AddTicks(5925),
                             Name = "Electronic",
                             ParentId = 0,
                             Priority = 1
@@ -130,7 +115,7 @@ namespace ProductPlayground.Persistence.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 727, DateTimeKind.Local).AddTicks(6348),
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 915, DateTimeKind.Local).AddTicks(5931),
                             Name = "Moda",
                             ParentId = 0,
                             Priority = 2
@@ -138,7 +123,7 @@ namespace ProductPlayground.Persistence.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 727, DateTimeKind.Local).AddTicks(6349),
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 915, DateTimeKind.Local).AddTicks(5933),
                             Name = "Computer",
                             ParentId = 1,
                             Priority = 1
@@ -146,7 +131,7 @@ namespace ProductPlayground.Persistence.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 727, DateTimeKind.Local).AddTicks(6351),
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 915, DateTimeKind.Local).AddTicks(5934),
                             Name = "Dress",
                             ParentId = 2,
                             Priority = 2
@@ -154,50 +139,50 @@ namespace ProductPlayground.Persistence.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 729, DateTimeKind.Local).AddTicks(408),
-                            Name = "Beauty, Sports & Electronics",
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 917, DateTimeKind.Local).AddTicks(125),
+                            Name = "Shoes, Grocery & Computers",
                             ParentId = 1,
-                            Priority = 7
+                            Priority = 8
                         },
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 729, DateTimeKind.Local).AddTicks(439),
-                            Name = "Home & Outdoors",
-                            ParentId = 3,
-                            Priority = 9
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 917, DateTimeKind.Local).AddTicks(134),
+                            Name = "Garden",
+                            ParentId = 4,
+                            Priority = 7
                         },
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 729, DateTimeKind.Local).AddTicks(446),
-                            Name = "Health",
-                            ParentId = 3,
-                            Priority = 10
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 917, DateTimeKind.Local).AddTicks(171),
+                            Name = "Computers",
+                            ParentId = 1,
+                            Priority = 9
                         },
                         new
                         {
                             Id = 8,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 729, DateTimeKind.Local).AddTicks(454),
-                            Name = "Outdoors",
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 917, DateTimeKind.Local).AddTicks(185),
+                            Name = "Electronics, Books & Shoes",
                             ParentId = 2,
-                            Priority = 3
+                            Priority = 5
                         },
                         new
                         {
                             Id = 9,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 729, DateTimeKind.Local).AddTicks(464),
-                            Name = "Kids & Tools",
-                            ParentId = 4,
-                            Priority = 10
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 917, DateTimeKind.Local).AddTicks(193),
+                            Name = "Garden",
+                            ParentId = 2,
+                            Priority = 6
                         },
                         new
                         {
                             Id = 10,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 729, DateTimeKind.Local).AddTicks(478),
-                            Name = "Clothing & Jewelery",
-                            ParentId = 2,
-                            Priority = 3
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 917, DateTimeKind.Local).AddTicks(199),
+                            Name = "Sports",
+                            ParentId = 4,
+                            Priority = 10
                         });
                 });
 
@@ -239,82 +224,82 @@ namespace ProductPlayground.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CategoryId = 4,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(6982),
-                            Description = "Quisquam.",
-                            Title = "Sint."
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6267),
+                            Description = "Voluptatem.",
+                            Title = "Commodi."
                         },
                         new
                         {
                             Id = 2,
-                            CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7025),
-                            Description = "A.",
-                            Title = "Quasi."
+                            CategoryId = 4,
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6292),
+                            Description = "Iusto.",
+                            Title = "Cum."
                         },
                         new
                         {
                             Id = 3,
-                            CategoryId = 4,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7052),
-                            Description = "Voluptas.",
-                            Title = "Debitis."
+                            CategoryId = 3,
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6311),
+                            Description = "Sit.",
+                            Title = "Autem."
                         },
                         new
                         {
                             Id = 4,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7068),
-                            Description = "Cupiditate.",
-                            Title = "Modi."
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6325),
+                            Description = "Nobis.",
+                            Title = "Dignissimos."
                         },
                         new
                         {
                             Id = 5,
-                            CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7083),
-                            Description = "Itaque.",
-                            Title = "Rerum."
+                            CategoryId = 2,
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6340),
+                            Description = "Aut.",
+                            Title = "Quo."
                         },
                         new
                         {
                             Id = 6,
-                            CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7099),
-                            Description = "Eaque.",
-                            Title = "Temporibus."
+                            CategoryId = 2,
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6358),
+                            Description = "Magnam.",
+                            Title = "Id."
                         },
                         new
                         {
                             Id = 7,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7118),
-                            Description = "Ea.",
-                            Title = "Vero."
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6400),
+                            Description = "Nemo.",
+                            Title = "Quam."
                         },
                         new
                         {
                             Id = 8,
-                            CategoryId = 2,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7134),
-                            Description = "Sit.",
-                            Title = "Blanditiis."
+                            CategoryId = 3,
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6415),
+                            Description = "Praesentium.",
+                            Title = "Incidunt."
                         },
                         new
                         {
                             Id = 9,
-                            CategoryId = 1,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7149),
-                            Description = "Praesentium.",
-                            Title = "Sint."
+                            CategoryId = 3,
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6430),
+                            Description = "Tempore.",
+                            Title = "Itaque."
                         },
                         new
                         {
                             Id = 10,
-                            CategoryId = 4,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 730, DateTimeKind.Local).AddTicks(7165),
-                            Description = "Vel.",
-                            Title = "Aut."
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 918, DateTimeKind.Local).AddTicks(6447),
+                            Description = "Maiores.",
+                            Title = "Minima."
                         });
                 });
 
@@ -362,118 +347,118 @@ namespace ProductPlayground.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            BrandId = 3,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(2924),
-                            Description = "Doloribus.",
-                            Discount = 25.94m,
-                            Price = 993.35m,
-                            Title = "Aliquid."
+                            BrandId = 2,
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8575),
+                            Description = "Optio.",
+                            Discount = 14.93m,
+                            Price = 1922.19m,
+                            Title = "Officia."
                         },
                         new
                         {
                             Id = 2,
-                            BrandId = 1,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(2947),
-                            Description = "Iste.",
-                            Discount = 40.65m,
-                            Price = 1909.87m,
-                            Title = "In."
+                            BrandId = 2,
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8641),
+                            Description = "Sint.",
+                            Discount = 39.40m,
+                            Price = 169.88m,
+                            Title = "Perspiciatis."
                         },
                         new
                         {
                             Id = 3,
-                            BrandId = 2,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(2965),
-                            Description = "Excepturi.",
-                            Discount = 39.63m,
-                            Price = 647.41m,
-                            Title = "Praesentium."
+                            BrandId = 3,
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8660),
+                            Description = "Iure.",
+                            Discount = 12.57m,
+                            Price = 1979.92m,
+                            Title = "Reprehenderit."
                         },
                         new
                         {
                             Id = 4,
-                            BrandId = 1,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(3011),
-                            Description = "Iste.",
-                            Discount = 45.75m,
-                            Price = 1199.61m,
-                            Title = "Molestiae."
+                            BrandId = 3,
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8682),
+                            Description = "Est.",
+                            Discount = 15.39m,
+                            Price = 1903.35m,
+                            Title = "Amet."
                         },
                         new
                         {
                             Id = 5,
-                            BrandId = 3,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(3031),
-                            Description = "Quis.",
-                            Discount = 19.40m,
-                            Price = 1038.29m,
-                            Title = "Ipsa."
+                            BrandId = 1,
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8699),
+                            Description = "Dolore.",
+                            Discount = 25.83m,
+                            Price = 1108.90m,
+                            Title = "Quo."
                         },
                         new
                         {
                             Id = 6,
                             BrandId = 3,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(3050),
-                            Description = "Eum.",
-                            Discount = 30.47m,
-                            Price = 1336.14m,
-                            Title = "Et."
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8717),
+                            Description = "Exercitationem.",
+                            Discount = 28.56m,
+                            Price = 533.04m,
+                            Title = "Rerum."
                         },
                         new
                         {
                             Id = 7,
-                            BrandId = 2,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(3067),
-                            Description = "Maiores.",
-                            Discount = 30.82m,
-                            Price = 800.21m,
-                            Title = "Commodi."
+                            BrandId = 3,
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8733),
+                            Description = "Aut.",
+                            Discount = 22.06m,
+                            Price = 1134.56m,
+                            Title = "Eius."
                         },
                         new
                         {
                             Id = 8,
-                            BrandId = 2,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(3084),
-                            Description = "Sit.",
-                            Discount = 13.66m,
-                            Price = 1123.22m,
-                            Title = "Voluptatem."
+                            BrandId = 1,
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8751),
+                            Description = "Sint.",
+                            Discount = 26.19m,
+                            Price = 715.87m,
+                            Title = "Qui."
                         },
                         new
                         {
                             Id = 9,
                             BrandId = 3,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(3103),
-                            Description = "Pariatur.",
-                            Discount = 36.20m,
-                            Price = 447.31m,
-                            Title = "Rerum."
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8768),
+                            Description = "Alias.",
+                            Discount = 16.29m,
+                            Price = 433.50m,
+                            Title = "Aut."
                         },
                         new
                         {
                             Id = 10,
                             BrandId = 1,
-                            CreatedDate = new DateTime(2024, 4, 21, 16, 15, 38, 732, DateTimeKind.Local).AddTicks(3121),
-                            Description = "Consectetur.",
-                            Discount = 22.06m,
-                            Price = 354.58m,
-                            Title = "Quia."
+                            CreatedDate = new DateTime(2024, 4, 23, 10, 58, 8, 920, DateTimeKind.Local).AddTicks(8785),
+                            Description = "Dignissimos.",
+                            Discount = 15.25m,
+                            Price = 1826.42m,
+                            Title = "Debitis."
                         });
                 });
 
-            modelBuilder.Entity("CategoryProduct", b =>
+            modelBuilder.Entity("ProductPlayground.Domain.Entities.ProductCategory", b =>
                 {
-                    b.HasOne("ProductPlayground.Domain.Entities.Category", null)
-                        .WithMany()
-                        .HasForeignKey("CategoriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
 
-                    b.HasOne("ProductPlayground.Domain.Entities.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ProductId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("ProductPlayground.Domain.Entities.Detail", b =>
@@ -498,9 +483,35 @@ namespace ProductPlayground.Persistence.Migrations
                     b.Navigation("Brand");
                 });
 
+            modelBuilder.Entity("ProductPlayground.Domain.Entities.ProductCategory", b =>
+                {
+                    b.HasOne("ProductPlayground.Domain.Entities.Category", "Category")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProductPlayground.Domain.Entities.Product", "Product")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("ProductPlayground.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Details");
+
+                    b.Navigation("ProductCategories");
+                });
+
+            modelBuilder.Entity("ProductPlayground.Domain.Entities.Product", b =>
+                {
+                    b.Navigation("ProductCategories");
                 });
 #pragma warning restore 612, 618
         }
