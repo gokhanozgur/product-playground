@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
+using ProductPlayground.Application.DTOs;
 using ProductPlayground.Application.Interfaces.AutoMapper;
 using ProductPlayground.Application.Interfaces.UnitOfWork;
 using ProductPlayground.Domain.Entities;
@@ -23,21 +25,9 @@ namespace ProductPlayground.Application.Features.Products.Queries.GetAllProducts
 
         public async Task<IList<GetAllProductsQueryResponse>> Handle(GetAllProductsQueryRequest request, CancellationToken cancellationToken)
         {
-            var products = await _unitOfWork.GetReadRepository<Product>().GetAllAsync();
+            var products = await _unitOfWork.GetReadRepository<Product>().GetAllAsync(include: x => x.Include(b => b.Brand));
 
-            //List<GetAllProductsQueryResponse> response = new ();
-
-            //foreach (var product in products)
-            //{
-            //    response.Add(new GetAllProductsQueryResponse
-            //    {
-            //        Title = product.Title,
-            //        Description = product.Description,
-            //        Discount = product.Discount,
-            //        //Price = product.Price,
-            //        Price = product.Price - (product.Price * product.Discount / 100),
-            //    });
-            //}
+            mapper.Map<BrandDto, Brand>(new Brand());
 
             var map = mapper.Map<GetAllProductsQueryResponse, Product>(products);
             foreach (var item in map)
