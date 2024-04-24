@@ -9,7 +9,16 @@ namespace ProductPlayground.Domain.Entities
 		{
 		}
 
-		public string Title { get; set; }
+        public Product(string title, string description, int brandId, decimal price, decimal discount)
+        {
+            Title = title;
+            Description = description;
+            BrandId = brandId;
+            Price = price;
+            Discount = discount;
+        }
+
+        public string Title { get; set; }
 		public string Description { get; set; }
 		//public string ImagePath { get; set; }
 		public int BrandId { get; set; }

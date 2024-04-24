@@ -40,5 +40,10 @@ namespace ProductPlayground.Persistence.Repositories
         {
             await Task.Run(() => { Entity.Remove(entity); });
         }
+
+        public async Task HardDeleteRangeAsync(IList<T> entity)
+        {
+            await Task.Run(() => { Entity.RemoveRange(entity); });
+        }
     }
 }
