@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace ProductPlayground.Application.Features.Products.Command.CreateProduct
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest, Unit>
     {
         private readonly IUnitOfWork unitOfWork;
 
         public CreateProductCommandHandler(IUnitOfWork unitOfWork) {
             this.unitOfWork = unitOfWork;
         }
-        public async Task Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
             Product product = new(request.Title, request.Description, request.BrandId, request.Price, request.Discount);
 
@@ -34,6 +34,8 @@ namespace ProductPlayground.Application.Features.Products.Command.CreateProduct
                 }
                 await unitOfWork.SaveAsync();
             }
+
+            return Unit.Value;
         }
     }
 }
