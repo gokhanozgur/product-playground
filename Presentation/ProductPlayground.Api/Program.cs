@@ -2,6 +2,7 @@
 using ProductPlayground.Persistence;
 using ProductPlayground.Application;
 using ProductPlayground.Mapper;
+using ProductPlayground.Application.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +33,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.ConfigureExceptionHandlingMiddleware();
 
 app.UseAuthorization();
 
