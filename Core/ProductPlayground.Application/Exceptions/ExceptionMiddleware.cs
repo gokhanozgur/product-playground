@@ -41,7 +41,7 @@ namespace ProductPlayground.Application.Exptions
 			List<string> errors = new()
 			{
 				exception.Message,
-				exception.InnerException?.ToString()
+				// exception.InnerException?.ToString()
 			};
 
 			return httpContext.Response.WriteAsync(new ExceptionModel
