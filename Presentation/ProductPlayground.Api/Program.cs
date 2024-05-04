@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using ProductPlayground.Persistence;
 using ProductPlayground.Application;
+using ProductPlayground.Infrastructure;
 using ProductPlayground.Mapper;
 using ProductPlayground.Application.Exceptions;
 
@@ -20,6 +21,7 @@ builder.Configuration
     .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
 builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddCustomMapper();
 
