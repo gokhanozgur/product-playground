@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProductPlayground.Application.Interfaces.Repositories;
 using ProductPlayground.Application.Interfaces.UnitOfWork;
+using ProductPlayground.Domain.Entities;
 using ProductPlayground.Persistence.Context;
 using ProductPlayground.Persistence.Repositories;
 using ProductPlayground.Persistence.UnitOfWorks;
@@ -23,6 +24,16 @@ namespace ProductPlayground.Persistence
             services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
             services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddIdentityCore<User>(opt =>
+            {
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequiredLength = 2;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireUppercase = false;
+                opt.SignIn.RequireConfirmedEmail = false; // If you send a confirmation mail you should change to true.
+            })
+                .AddRoles<Role>()
+                .AddEntityFrameworkStores<AppDbContext>();
         }
     }
 }
