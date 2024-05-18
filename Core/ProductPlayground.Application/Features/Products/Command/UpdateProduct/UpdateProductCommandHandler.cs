@@ -1,4 +1,7 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
+using ProductPlayground.Application.Bases;
+using ProductPlayground.Application.Features.Products.Rules;
 using ProductPlayground.Application.Interfaces.AutoMapper;
 using ProductPlayground.Application.Interfaces.UnitOfWork;
 using ProductPlayground.Domain.Entities;
@@ -10,15 +13,11 @@ using System.Threading.Tasks;
 
 namespace ProductPlayground.Application.Features.Products.Command.UpdateProduct
 {
-    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommandRequest, Unit>
+    public class UpdateProductCommandHandler : BaseHandler, IRequestHandler<UpdateProductCommandRequest, Unit>
     {
-        private readonly IUnitOfWork unitOfWork;
-        private IMapper mapper;
-
-        public UpdateProductCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public UpdateProductCommandHandler(IMapper mapper, IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor, ProductRules productRules) : base(mapper, unitOfWork, httpContextAccessor)
         {
-            this.unitOfWork = unitOfWork;
-            this.mapper = mapper;
+
         }
 
         public async Task<Unit> Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
