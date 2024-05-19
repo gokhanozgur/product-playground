@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProductPlayground.Application.Features.Products.Command.CreateProduct;
@@ -27,6 +28,7 @@ namespace ProductPlayground.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CreateProduct(CreateProductCommandRequest request)
         {
             await _mediator.Send(request);
@@ -34,6 +36,7 @@ namespace ProductPlayground.Api.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<IActionResult> UpdateProduct(UpdateProductCommandRequest request)
         {
             await _mediator.Send(request);
@@ -41,6 +44,7 @@ namespace ProductPlayground.Api.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         public async Task<IActionResult> DeleteProduct(DeleteProductCommandRequest request)
         {
             await _mediator.Send(request);
