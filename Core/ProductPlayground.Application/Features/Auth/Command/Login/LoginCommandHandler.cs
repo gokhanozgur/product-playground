@@ -50,7 +50,7 @@ namespace ProductPlayground.Application.Features.Auth.Command.Login
             IList<string> roles = await userManager.GetRolesAsync(user);
 
             JwtSecurityToken token = await tokenService.CreateToken(user, roles);
-            string refreshToken = tokenService.GenerateRefresherToken();
+            string refreshToken = tokenService.GenerateRefreshToken();
 
             // TODO The configuration getting style should be refactor. 
             _ = int.TryParse(configuration["JWT:RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);

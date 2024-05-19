@@ -12,7 +12,7 @@ namespace ProductPlayground.Application.Interfaces.Tokens
     public interface ITokenService
     {
         Task<JwtSecurityToken> CreateToken(User user, IList<string> roles);
-        string GenerateRefresherToken();
+        string GenerateRefreshToken();
         ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token);
     }
 }

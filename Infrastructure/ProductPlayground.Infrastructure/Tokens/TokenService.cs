@@ -54,7 +54,7 @@ namespace ProductPlayground.Infrastructure.Tokens
             return token;
         }
 
-        public string GenerateRefresherToken()
+        public string GenerateRefreshToken()
         {
             var randomNumber = new byte[64];
             using var rng = RandomNumberGenerator.Create();
