@@ -27,6 +27,7 @@ namespace ProductPlayground.Application
 
             ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("en");
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RedisCacheBehavior<,>));
         }
 
         private static IServiceCollection AddRulesFromAssemblyContaining(this IServiceCollection services, Assembly assembly, Type type)
