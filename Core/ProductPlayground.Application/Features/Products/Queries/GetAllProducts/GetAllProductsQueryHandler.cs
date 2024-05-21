@@ -14,18 +14,18 @@ namespace ProductPlayground.Application.Features.Products.Queries.GetAllProducts
 {
     public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQueryRequest, IList<GetAllProductsQueryResponse>>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
         public GetAllProductsQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _unitOfWork = unitOfWork;
+            this.unitOfWork = unitOfWork;
             this.mapper = mapper;
         }
 
         public async Task<IList<GetAllProductsQueryResponse>> Handle(GetAllProductsQueryRequest request, CancellationToken cancellationToken)
         {
-            var products = await _unitOfWork.GetReadRepository<Product>().GetAllAsync(include: x => x.Include(b => b.Brand));
+            var products = await unitOfWork.GetReadRepository<Product>().GetAllAsync(include: x => x.Include(b => b.Brand));
 
             mapper.Map<BrandDto, Brand>(new Brand());
 

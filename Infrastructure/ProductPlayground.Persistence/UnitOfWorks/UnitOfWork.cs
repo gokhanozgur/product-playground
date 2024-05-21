@@ -13,21 +13,21 @@ namespace ProductPlayground.Persistence.UnitOfWorks
     public class UnitOfWork : IUnitOfWork
     {
 
-        private readonly AppDbContext _dbContext;
+        private readonly AppDbContext dbContext;
 
         public UnitOfWork(AppDbContext dbContext)
         {
-            _dbContext = dbContext;
+            this.dbContext = dbContext;
         }
 
-        public async ValueTask DisposeAsync() => await _dbContext.DisposeAsync();
+        public async ValueTask DisposeAsync() => await dbContext.DisposeAsync();
 
-        public int Save() => _dbContext.SaveChanges();
+        public int Save() => dbContext.SaveChanges();
 
-        public async Task<int> SaveAsync() => await _dbContext.SaveChangesAsync();
+        public async Task<int> SaveAsync() => await dbContext.SaveChangesAsync();
 
-        IReadRepository<T> IUnitOfWork.GetReadRepository<T>() => new ReadRepository<T>(_dbContext);
+        IReadRepository<T> IUnitOfWork.GetReadRepository<T>() => new ReadRepository<T>(dbContext);
 
-        IWriteRepository<T> IUnitOfWork.GetWriteRepository<T>() => new WriteRepository<T>(_dbContext);
+        IWriteRepository<T> IUnitOfWork.GetWriteRepository<T>() => new WriteRepository<T>(dbContext);
     }
 }

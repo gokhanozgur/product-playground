@@ -11,14 +11,14 @@ namespace ProductPlayground.Persistence.Repositories
 {
     public class WriteRepository<T> : IWriteRepository<T> where T : class, IEntityBase, new()
     {
-        private readonly DbContext _dbContext;
+        private readonly DbContext dbContext;
 
         public WriteRepository(DbContext dbContext)
         {
-            _dbContext = dbContext;
+            this.dbContext = dbContext;
         }
 
-        private DbSet<T> Entity { get => _dbContext.Set<T>(); }
+        private DbSet<T> Entity { get => dbContext.Set<T>(); }
 
         public async Task AddAsync(T entity)
         {

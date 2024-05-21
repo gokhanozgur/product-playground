@@ -14,14 +14,14 @@ namespace ProductPlayground.Persistence.Repositories
     public class ReadRepository<T> : IReadRepository<T> where T : class, IEntityBase, new()
     {
 
-        private readonly DbContext _dbContext;
+        private readonly DbContext dbContext;
 
         public ReadRepository(DbContext dbContext)
         {
-            _dbContext = dbContext;
+            this.dbContext = dbContext;
         }
 
-        private DbSet<T> Entity { get => _dbContext.Set<T>(); }
+        private DbSet<T> Entity { get => dbContext.Set<T>(); }
 
         public async Task<IList<T>> GetAllAsync(Expression<Func<T, bool>>? predicate = null, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, bool enableTracking = false)
         {
