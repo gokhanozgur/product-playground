@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ProductPlayground.Mapper.AutoMapper
 {
@@ -45,7 +46,7 @@ namespace ProductPlayground.Mapper.AutoMapper
             {
                 return;
             }
-            
+
             typePairs.Add(typePair);
 
             var config = new MapperConfiguration(cfg =>
@@ -60,7 +61,7 @@ namespace ProductPlayground.Mapper.AutoMapper
                     {
                         cfg.CreateMap(item.SourceType, item.DestinationType).MaxDepth(depth).ReverseMap();
                     }
-                }               
+                }
             });
 
             MapperContainer = config.CreateMapper();
