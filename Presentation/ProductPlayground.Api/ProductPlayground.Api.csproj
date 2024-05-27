@@ -19,7 +19,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\ProductPlayground.Mapper\ProductPlayground.Mapper.csproj" />
+    <ProjectReference Include="..\..\Core\ProductPlayground.Mapper\ProductPlayground.Mapper.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProductPlayground.Infrastructure\ProductPlayground.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ProductPlayground.Persistence\ProductPlayground.Persistence.csproj" />
   </ItemGroup>
